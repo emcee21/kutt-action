@@ -7,7 +7,7 @@ jest.mock('@actions/core', () => ({
   setOutput: jest.fn(),
   setFailed: jest.fn(),
   info: jest.fn(),
-  error: jest.fn()
+  error: jest.fn(),
 }));
 
 // Mock the Kutt module
@@ -15,10 +15,10 @@ jest.mock('kutt', () => {
   const mockKutt = {
     set: jest.fn().mockReturnThis(),
     links: jest.fn().mockReturnThis(),
-    create: jest.fn()
+    create: jest.fn(),
   };
   return {
-    default: jest.fn().mockImplementation(() => mockKutt)
+    default: jest.fn().mockImplementation(() => mockKutt),
   };
 });
 
@@ -29,7 +29,7 @@ describe('Kutt URL Shortener Action', () => {
   beforeEach(() => {
     // Reset all mocks before each test
     jest.clearAllMocks();
-    
+
     // Setup default mock implementations
     core.getInput.mockImplementation((name) => {
       switch (name) {
@@ -50,7 +50,7 @@ describe('Kutt URL Shortener Action', () => {
     const mockShortUrl = 'https://kutt.it/abc123';
     Kutt().links().create.mockResolvedValue({
       link: mockShortUrl,
-      id: 'abc123'
+      id: 'abc123',
     });
 
     await run();
@@ -58,7 +58,7 @@ describe('Kutt URL Shortener Action', () => {
     // Verify core.setOutput was called with correct values
     expect(core.setOutput).toHaveBeenCalledWith('link', mockShortUrl);
     expect(core.setOutput).toHaveBeenCalledWith('id', 'abc123');
-    
+
     // Verify no errors were set
     expect(core.setFailed).not.toHaveBeenCalled();
   });
@@ -70,7 +70,9 @@ describe('Kutt URL Shortener Action', () => {
     await run();
 
     // Verify error was set
-    expect(core.setFailed).toHaveBeenCalledWith('Missing required inputs: api-url, api-key, target-url');
+    expect(core.setFailed).toHaveBeenCalledWith(
+      'Missing required inputs: api-url, api-key, target-url'
+    );
   });
 
   it('should handle Kutt API errors', async () => {
@@ -106,4 +108,4 @@ describe('Kutt URL Shortener Action', () => {
     // Verify Kutt client was initialized with custom URL
     expect(Kutt().set).toHaveBeenCalledWith('api', customApiUrl);
   });
-}); 
+});

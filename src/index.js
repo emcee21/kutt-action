@@ -4,13 +4,13 @@ const Kutt = require('kutt').default;
 async function run() {
   try {
     console.log('Starting Kutt URL shortener action...');
-    
+
     const apiUrl = core.getInput('api-url');
     const apiKey = core.getInput('api-key');
     const target = core.getInput('target-url');
     const description = core.getInput('description');
     const expireIn = core.getInput('expire-in');
-    const reuse = core.getInput('reuse');
+    const reuse = Boolean(core.getInput('reuse'));
     const domain = core.getInput('domain');
 
     console.log('Input parameters:');
@@ -39,7 +39,7 @@ async function run() {
       description,
       expire_in: expireIn,
       reuse,
-      domain
+      domain,
     });
 
     if (link && link.link) {
@@ -47,7 +47,7 @@ async function run() {
       console.log(`- Original URL: ${target}`);
       console.log(`- Shortened URL: ${link.link}`);
       console.log(`- Link ID: ${link.id}`);
-      
+
       core.setOutput('link', link.link);
       core.setOutput('id', link.id);
     } else {
@@ -68,4 +68,4 @@ module.exports = { run };
 // Only run if this file is being executed directly
 if (require.main === module) {
   run();
-} 
+}

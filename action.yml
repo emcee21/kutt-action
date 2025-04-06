@@ -22,6 +22,7 @@ inputs:
   reuse:
     description: 'Reuse'
     required: false
+    default: 'false'
   domain:
     description: 'Domain'
     required: false
@@ -34,5 +35,5 @@ outputs:
     description: 'The ID of the shortened URL'
 
 runs:
-  using: "node20"
-  main: "dist/index.js" 
+  using: 'node20'
+  main: 'dist/index.js'
