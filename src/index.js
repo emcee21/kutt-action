@@ -12,6 +12,7 @@ async function run() {
     const expireIn = core.getInput('expire-in');
     const reuse = Boolean(core.getInput('reuse'));
     const domain = core.getInput('domain');
+    const timeout = parseInt(core.getInput('timeout'));
 
     console.log('Input parameters:');
     console.log(`- API URL: ${apiUrl}`);
@@ -29,8 +30,10 @@ async function run() {
 
     console.log('Initializing Kutt client...');
     // Initialize Kutt client
-    const kutt = new Kutt();
-    kutt.set('api', apiUrl).set('key', apiKey);
+    const kutt = new Kutt()
+      .set('api', apiUrl)
+      .set('key', apiKey)
+      .set('timeout', timeout * 1000);
 
     console.log('Creating short link...');
     // Create short link

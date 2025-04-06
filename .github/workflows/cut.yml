@@ -25,6 +25,7 @@ jobs:
           api-url: ${{ vars.KUTT_API_URL || 'https://kutt.it/api/v2' }}
           api-key: ${{ secrets.KUTT_API_KEY }}
           target-url: ${{ inputs.target-url }}
+          timeout: 60
 
       - name: Display shortened URL
         run: |

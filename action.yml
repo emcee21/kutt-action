@@ -13,6 +13,10 @@ inputs:
   target-url:
     description: 'URL to shorten'
     required: true
+  domain:
+    description: 'Domain'
+    required: false
+    default: 'clk.wnml.net'
   description:
     description: 'Description'
     required: false
@@ -23,10 +27,10 @@ inputs:
     description: 'Reuse'
     required: false
     default: 'false'
-  domain:
-    description: 'Domain'
+  timeout:
+    description: 'Timeout'
     required: false
-    default: 'clk.wnml.net'
+    default: '60'
 
 outputs:
   link:
