@@ -59,8 +59,7 @@ async function run() {
       core.setFailed('Failed to get shortened URL from response');
     }
   } catch (error) {
-    console.error('Error occurred:');
-    console.error(error.stack);
+    console.error('Error occurred:', error);
     core.setFailed(error.message);
   }
 }
