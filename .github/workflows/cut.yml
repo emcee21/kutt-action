@@ -1,11 +1,15 @@
 name: Cut
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
+    inputs:
+      target-url:
+        required: true
+        description: 'The URL to shorten'
+
+env:
+  KUTT_API_URL: ${{ vars.KUTT_API_URL || 'https://kutt.it/api/v2' }}
+  KUTT_API_KEY: ${{ secrets.KUTT_API_KEY }}
 
 jobs:
   test:
