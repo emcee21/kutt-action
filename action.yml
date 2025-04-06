@@ -1,0 +1,23 @@
+name: 'Kutt URL Shortener'
+description: 'Shorten URLs using the Kutt URL shortener service'
+author: 'emcee'
+
+inputs:
+  api-url:
+    description: 'Kutt API endpoint URL'
+    required: true
+    default: 'https://kutt.it/api/v2/links'
+  api-key:
+    description: 'Kutt API key'
+    required: true
+  target-url:
+    description: 'URL to shorten'
+    required: true
+
+outputs:
+  short-url:
+    description: 'The shortened URL'
+
+runs:
+  using: "node20"
+  main: "dist/index.js" 
