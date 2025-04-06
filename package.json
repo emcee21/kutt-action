@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "build": "ncc build src/index.js -o dist --minify --source-map"
+    "build": "ncc build src/index.js -o dist"
   },
   "repository": {
     "type": "git",
