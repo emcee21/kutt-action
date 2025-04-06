@@ -24,9 +24,9 @@ jobs:
         with:
           api-url: ${{ vars.KUTT_API_URL || 'https://kutt.it/api/v2' }}
           api-key: ${{ secrets.KUTT_API_KEY }}
-          target-url: 'https://github.com/emcee/kutt-action'
+          target-url: ${{ inputs.target-url }}
 
       - name: Display shortened URL
         run: |
-          echo "Shortened URL: ${{ steps.shorten.outputs.short-url }}"
-          echo "Link ID: ${{ steps.shorten.outputs.link-id }}"
+          echo "Shortened URL: ${{ steps.shorten.outputs.link }}"
+          echo "Link ID: ${{ steps.shorten.outputs.id }}"
