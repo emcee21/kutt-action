@@ -1,22 +1,37 @@
-name: 'Kutt URL Shortener'
-description: 'Shorten URLs using the Kutt URL shortener service'
-author: 'emcee'
+name: 'URL Shortener'
+author: 'emcee21'
+description: 'Shorten URLs using an API'
 
 inputs:
   api-url:
-    description: 'Kutt API endpoint URL'
+    description: 'API endpoint URL'
     required: true
-    default: 'https://kutt.it/api/v2/links'
+    default: 'https://clk.wnml.io/api/v2'
   api-key:
-    description: 'Kutt API key'
+    description: 'API key'
     required: true
   target-url:
     description: 'URL to shorten'
     required: true
+  description:
+    description: 'Description'
+    required: false
+  expire-in:
+    description: 'Expiration time'
+    required: false
+  reuse:
+    description: 'Reuse'
+    required: false
+  domain:
+    description: 'Domain'
+    required: false
+    default: 'clk.wnml.net'
 
 outputs:
-  short-url:
+  link:
     description: 'The shortened URL'
+  id:
+    description: 'The ID of the shortened URL'
 
 runs:
   using: "node20"

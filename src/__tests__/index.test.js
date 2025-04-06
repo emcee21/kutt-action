@@ -49,15 +49,15 @@ describe('Kutt URL Shortener Action', () => {
     // Mock successful Kutt response
     const mockShortUrl = 'https://kutt.it/abc123';
     Kutt().links().create.mockResolvedValue({
-      shortUrl: mockShortUrl,
+      link: mockShortUrl,
       id: 'abc123'
     });
 
     await run();
 
     // Verify core.setOutput was called with correct values
-    expect(core.setOutput).toHaveBeenCalledWith('short-url', mockShortUrl);
-    expect(core.setOutput).toHaveBeenCalledWith('link-id', 'abc123');
+    expect(core.setOutput).toHaveBeenCalledWith('link', mockShortUrl);
+    expect(core.setOutput).toHaveBeenCalledWith('id', 'abc123');
     
     // Verify no errors were set
     expect(core.setFailed).not.toHaveBeenCalled();
