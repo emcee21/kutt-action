@@ -2,7 +2,7 @@
   "name": "kutt-action",
   "version": "1.0.0",
   "description": "GitHub Action to shorten URLs using Kutt",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest --watch",
